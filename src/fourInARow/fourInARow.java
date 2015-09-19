@@ -6,9 +6,12 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
+
 public class fourInARow extends Applet implements Symbols, MouseListener{
 	int[][] board = new int[7][7];
 	int turn = 1;
+	JOptionPane message = new JOptionPane();
 	
 	public void init() {
 		setSize(710, 710);
@@ -38,6 +41,92 @@ public class fourInARow extends Applet implements Symbols, MouseListener{
 				}
 			}
 		}
+		check();
+	}
+	
+	public void check(){
+		//rows
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if (board[i][j] != EMPTY && board[i][j] == board[i + 1][j] && board[i][j] == board[i + 2][j] && board[i][j] == board[i + 3][j]) {
+					switch (board[i][j]) {
+					case RED:
+						message.showMessageDialog(null, "Red wins!!!");
+						System.exit(0);
+						break;
+					case YELLOW:
+						message.showMessageDialog(null, "Yellow wins!!!");
+						System.exit(0);
+						break;
+					}
+				}
+			}
+		}
+		
+		//columns
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (board[i][j] != EMPTY && board[i][j] == board[i][j + 1] && board[i][j] == board[i][j + 2] && board[i][j] == board[i][j + 3]) {
+					switch (board[i][j]) {
+					case RED:
+						message.showMessageDialog(null, "Red wins!!!");
+						System.exit(0);
+						break;
+					case YELLOW:
+						message.showMessageDialog(null, "Yellow wins!!!");
+						System.exit(0);
+						break;
+					}
+				}
+			}
+		}
+		
+		//diagonals (down right)
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (board[i][j] != EMPTY && board[i][j] == board[i+1][j+1] && board[i][j] == board[i+2][j+2] && board[i][j] == board[i+3][j+3]) {
+					switch (board[i][j]) {
+					case RED:
+						message.showMessageDialog(null, "Red wins!!!");
+						System.exit(0);
+						break;
+					case YELLOW:
+						message.showMessageDialog(null, "Yellow wins!!!");
+						System.exit(0);
+						break;
+					}
+				}
+			}
+		}
+		
+		//diagonals (down left)
+		for (int i = 0; i < 4; i++) {
+			for (int j = 3; j < 7; j++) {
+				if (board[i][j] != EMPTY && board[i][j] == board[i+1][j-1] && board[i][j] == board[i+2][j-2] && board[i][j] == board[i+3][j-3]) {
+					switch (board[i][j]) {
+					case RED:
+						message.showMessageDialog(null, "Red wins!!!");
+						System.exit(0);
+						break;
+					case YELLOW:
+						message.showMessageDialog(null, "Yellow wins!!!");
+						System.exit(0);
+						break;
+					}
+				}
+			}
+		}
+		
+		/*
+		 * for debugging...
+		 * */
+//		System.out.println("------------------");
+//		for (int i = 0; i < board.length; i++) {
+//			for (int j = 0; j < board[i].length; j++) {
+//				System.out.print("("+ i + ", " + j + "= " + board[i][j] + ")");
+//			}
+//			System.out.println();
+//		}
 	}
 	
 	public int y(int x, int y){
