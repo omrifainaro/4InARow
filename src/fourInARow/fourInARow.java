@@ -117,16 +117,21 @@ public class fourInARow extends Applet implements Symbols, MouseListener{
 			}
 		}
 		
-		/*
-		 * for debugging...
-		 * */
-//		System.out.println("------------------");
-//		for (int i = 0; i < board.length; i++) {
-//			for (int j = 0; j < board[i].length; j++) {
-//				System.out.print("("+ i + ", " + j + "= " + board[i][j] + ")");
-//			}
-//			System.out.println();
-//		}
+		if (isFull()) {
+			message.showMessageDialog(null, "its a tie!!");
+			System.exit(0);
+		}
+	}
+	
+	public boolean isFull(){
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if (board[i][j] == EMPTY) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	public int y(int x, int y){
