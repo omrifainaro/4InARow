@@ -2,6 +2,8 @@ package fourInARow;
 
 import java.applet.Applet;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -18,7 +20,9 @@ public class fourInARow extends Applet implements Symbols, MouseListener, KeyLis
 	JOptionPane message = new JOptionPane();
 	
 	public void init() {
-		setSize(710, 710);
+		setSize(710, 720);
+		setMinimumSize(new Dimension(710,720));
+		setMaximumSize(new Dimension(710,720));
 		setBackground(Color.LIGHT_GRAY);
 		addMouseListener(this);
 		addKeyListener(this);
@@ -122,6 +126,7 @@ public class fourInARow extends Applet implements Symbols, MouseListener, KeyLis
 			}
 			break;
 		}
+		check();
 	}
 
 	
@@ -242,6 +247,10 @@ public class fourInARow extends Applet implements Symbols, MouseListener, KeyLis
 		for (int i = 0; i <= 700; i+=100) {
 			g.drawLine(i, 0, i, 700);
 			g.drawLine(0, i, 700, i);
+		}
+		for (int i = 0; i <= 700; i+=100) {
+			g.setFont(new Font("arial", 1, 20));
+			g.drawString(i/100 + "", i-50, 720);
 		}
 	}
 
