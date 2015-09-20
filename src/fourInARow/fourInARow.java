@@ -3,12 +3,16 @@ package fourInARow;
 import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.security.Key;
 
+import javax.swing.JComboBox.KeySelectionManager;
 import javax.swing.JOptionPane;
 
-public class fourInARow extends Applet implements Symbols, MouseListener{
+public class fourInARow extends Applet implements Symbols, MouseListener, KeyListener{
 	int[][] board = new int[7][7];
 	int turn = 1;
 	JOptionPane message = new JOptionPane();
@@ -17,6 +21,7 @@ public class fourInARow extends Applet implements Symbols, MouseListener{
 		setSize(710, 710);
 		setBackground(Color.LIGHT_GRAY);
 		addMouseListener(this);
+		addKeyListener(this);
 		
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
@@ -43,6 +48,82 @@ public class fourInARow extends Applet implements Symbols, MouseListener{
 		}
 		check();
 	}
+	
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_1:
+			if (turn == RED) {
+				draw(0, y(0, 600), Color.red);
+				turn++;
+			}
+			else{
+				draw(0, y(0, 600), Color.yellow);
+				turn--;
+			}
+			break;
+		case KeyEvent.VK_2:
+			if (turn == RED) {
+				draw(100, y(100, 600), Color.red);
+				turn++;
+			}
+			else{
+				draw(100, y(100, 600), Color.yellow);
+				turn--;
+			}
+			break;
+		case KeyEvent.VK_3:
+			if (turn == RED) {
+				draw(200, y(200, 600), Color.red);
+				turn++;
+			}
+			else{
+				draw(200, y(200, 600), Color.yellow);
+				turn--;
+			}
+			break;
+		case KeyEvent.VK_4:
+			if (turn == RED) {
+				draw(300, y(300, 600), Color.red);
+				turn++;
+			}
+			else{
+				draw(300, y(300, 600), Color.yellow);
+				turn--;
+			}
+			break;
+		case KeyEvent.VK_5:
+			if (turn == RED) {
+				draw(400, y(400, 600), Color.red);
+				turn++;
+			}
+			else{
+				draw(400, y(400, 600), Color.yellow);
+				turn--;
+			}
+			break;
+		case KeyEvent.VK_6:
+			if (turn == RED) {
+				draw(500, y(500, 600), Color.red);
+				turn++;
+			}
+			else{
+				draw(500, y(500, 600), Color.yellow);
+				turn--;
+			}
+			break;
+		case KeyEvent.VK_7:
+			if (turn == RED) {
+				draw(600, y(600, 600), Color.red);
+				turn++;
+			}
+			else{
+				draw(600, y(600, 600), Color.yellow);
+				turn--;
+			}
+			break;
+		}
+	}
+
 	
 	public void check(){
 		//rows
@@ -146,10 +227,14 @@ public class fourInARow extends Applet implements Symbols, MouseListener{
 		g.setColor(c);
 		g.fillOval(x, y, 100, 100);
 		if (c == Color.red) {
-			board[x/100][y/100] = RED;
+			try {
+				board[x/100][y/100] = RED;
+			} catch (Exception e) {}
 		}
 		else {
-			board[x/100][y/100] = YELLOW;
+			try {
+				board[x/100][y/100] = YELLOW;
+			} catch (Exception e) {}	
 		}
 	}
 	
@@ -181,6 +266,17 @@ public class fourInARow extends Applet implements Symbols, MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 		
 	}
 }
